@@ -1,5 +1,5 @@
 
-from __future__ import division, print_function, unicode_literals, absolute_import
+
 
 import os
 import sys
@@ -237,8 +237,8 @@ class NutmegProbe(Proc):
         parsed = json.loads(text)
 
         # Convert any string numerical values to int or float.  Safely.
-        container = {k: safe_number(v) for k,v in parsed['format'].items()}
-        streams =  [{k: safe_number(v) for k,v in s.items()} for s in parsed['streams']]
+        container = {k: safe_number(v) for k,v in list(parsed['format'].items())}
+        streams =  [{k: safe_number(v) for k,v in list(s.items())} for s in parsed['streams']]
 
         # Store final results in handy namespace structures.  Same as a dict, but access items
         # via attributes.  Includes support for IPython tab-completion.

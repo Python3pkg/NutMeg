@@ -3,7 +3,7 @@ import os
 
 import IPython.display
 
-from processor import NutmegProbe, NutmegClip
+from .processor import NutmegProbe, NutmegClip
 
 
 def example_probe():
@@ -16,7 +16,7 @@ def example_probe():
     IPython.display.display(p.results.container)
 
     for s in p.results.streams:
-        print('\nStream {}:'.format(s.index))
+        print(('\nStream {}:'.format(s.index)))
         IPython.display.display(s)
 
 
@@ -26,8 +26,8 @@ def example_clip():
     p = NutmegProbe()
     p.probe(f)
 
-    print('\nOriginal file: {}'.format(os.path.basename(f)))
-    print('Original duration: {}'.format(p.results.container.duration))
+    print(('\nOriginal file: {}'.format(os.path.basename(f))))
+    print(('Original duration: {}'.format(p.results.container.duration)))
 
     time_start = 0
     time_stop = 0.5*p.results.container.duration
@@ -35,12 +35,12 @@ def example_clip():
     c = NutmegClip()
     c.clip(f, time_start, time_stop)
 
-    print('\nClip file: {}'.format(os.path.basename(c.results.fname_out)))
+    print(('\nClip file: {}'.format(os.path.basename(c.results.fname_out))))
 
     p = NutmegProbe()
     p.probe(c.results.fname_out)
 
-    print('Clip duration: {}'.format(p.results.container.duration))
+    print(('Clip duration: {}'.format(p.results.container.duration)))
 
 
 if __name__ == '__main__':
